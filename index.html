@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Website Title</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
+    </head>
+
+    <body>
+        <header class="bg-info ">
+            <h1 class="p-2 text-center text-light">☀️<strong>5-Day Weather</strong>⛈️</h1>
+        </header>
+
+        <main class="container">
+            <div class="row">
+                
+                <div class="col-3">
+                    <form id="citySelect" class="">
+                        <h3 class="pb-3">Search for a City:</h3>
+                        <input id="cityInput" class="rounded" type="text" placeholder="City Name">
+                        <button id="searchBtn" class="btn-info rounded" type="submit">Search</button>
+                    </form>
+                
+                    <div class="container">
+                        <div class="row">
+                            <div id="cityButtons" class="col-12">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-9">
+                    <div id="weatherInfo" class="bg-info rounded p-2">
+                        <h2 id="city-name"></h2>
+                        <div id="city-info"></div>
+                    </div>
+
+                    <div id="forecast" class="container">
+                        <div class="row mb-6">
+                            <div id="day1" class="col-2.2 p-1 mr-1 mt-1 bg-info rounded"></div>
+                            <div id="day2" class="col-2.2 p-1 mr-1 mt-1 bg-info rounded"></div>
+                            <div id="day3" class="col-2.2 p-1 mr-1 mt-1 bg-info rounded"></div>
+                            <div id="day4" class="col-2.2 p-1 mr-1 mt-1 bg-info rounded"></div>
+                            <div id="day5" class="col-2.2 p-1 mr-1 mt-1 bg-info rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="fixed-bottom p-1 bg-dark text-light text-center">
+            <h4>Safe Travels!</h4>
+            <p>Made with love by .Madigan 💕 using Bootstrap!</p>
+        </footer>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
+
+        <script src="./assets/js/script.js"></script>
+    </body>
+</html>
