@@ -36,6 +36,13 @@ function saveAppendGet(event) {
     button.setAttribute('class', 'btn btn-info m-4');
 
     button.textContent = cityValue;
+
+    button.addEventListener('click', function() {
+        const searchParam = document.getElementById('cityInput').value;
+
+        getWeather(searchParam);
+    });
+
     cityBtnsEl.appendChild(button);
 
     getWeather(cityValue);
