@@ -33,7 +33,7 @@ function saveAppendGet(event) {
 
     const button = document.createElement('button');
 
-    button.setAttribute('class', 'btn btn-info m-4');
+    button.setAttribute('class', 'btn btn-info mx-4 my-2');
 
     button.textContent = cityValue;
 
