@@ -61,55 +61,58 @@ function saveAppendGet(event) {
 
     const cityValue = cityName.value.trim();
 
-    if (!cityBtns.includes(cityValue)) {
+    if (cityValue !== "") {
         
-        cityBtns.push(cityValue);
-    
-        localStorage.setItem('cityBtns', JSON.stringify(cityBtns));
-    
-        const button = document.createElement('button');
-    
-        button.setAttribute('class', 'btn btn-info mx-4 my-2');
-    
-        button.textContent = cityValue;
-    
-        button.addEventListener('click', function() {
+        if (!cityBtns.includes(cityValue)) {
             
-            const apiUrl = `${apiGeoUrl}q=${cityValue}&limit=1&appid=${key}`
+            cityBtns.push(cityValue);
+        
+            localStorage.setItem('cityBtns', JSON.stringify(cityBtns));
+        
+            const button = document.createElement('button');
+        
+            button.setAttribute('class', 'btn btn-info mx-4 my-2');
+        
+            button.textContent = cityValue;
+        
+            button.addEventListener('click', function() {
+                
+                const apiUrl = `${apiGeoUrl}q=${cityValue}&limit=1&appid=${key}`
 
-        fetch (apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error ('Network response not functional');
-            }
-            return response.json();
-        })
-        .then((data) => {
-            const lat = data[0].lat;
-            const lon =data[0].lon;
-            const apiWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
-
-            fetch (apiWeatherUrl)
-
+            fetch (apiUrl)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response not functional');
+                    throw new Error ('Network response not functional');
                 }
                 return response.json();
             })
-            .then(data => {
-                showWeather(data);
-            });
-    });
+            .then((data) => {
+                const lat = data[0].lat;
+                const lon =data[0].lon;
+                const apiWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
+
+                fetch (apiWeatherUrl)
+
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response not functional');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    showWeather(data);
+                });
         });
+            });
 
-        cityBtnsEl.appendChild(button);
+            cityBtnsEl.appendChild(button);
 
-        getWeather(cityValue)
+            getWeather(cityValue)
 
-    } else {
+        } else {
 
-        getWeather(cityValue);
+            getWeather(cityValue);
+        }
     }
 
 }
