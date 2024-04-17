@@ -32,7 +32,7 @@ cityBtns.forEach(function(element) {
         .then((data) => {
             const lat = data[0].lat;
             const lon =data[0].lon;
-            const apiWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
+            const apiWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
 
             fetch (apiWeatherUrl)
 
@@ -89,7 +89,7 @@ function saveAppendGet(event) {
             .then((data) => {
                 const lat = data[0].lat;
                 const lon =data[0].lon;
-                const apiWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
+                const apiWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
 
                 fetch (apiWeatherUrl)
 
@@ -133,7 +133,7 @@ function getWeather() {
     .then((data) => {
         const lat = data[0].lat;
         const lon =data[0].lon;
-        const apiWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
+        const apiWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
 
         fetch (apiWeatherUrl)
 
@@ -164,7 +164,7 @@ function showWeather(data) {
     city.textContent = `${data.city.name} ${dayjs().format('MM/DD/YYYY')}`;
 
     currentWeather.innerHTML = `
-    <img src="http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png" alt="${data.list[0].weather[0].description}">
+    <img src="https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png" alt="${data.list[0].weather[0].description}">
     <p>Temperature: ${data.list[0].main.temp} °F</p>
     <p>Wind Speed: ${data.list[0].wind.speed} mph</p>
     <p>Humidity: ${data.list[0].main.humidity} %</p>` 
@@ -172,7 +172,7 @@ function showWeather(data) {
     for (let i = 0; i < forecastCards.length; i++) {
         forecastCards[i].innerHTML = `
         <h5> ${dayjs().add(1 + i, 'day').format('MM/DD/YYYY')} </h5>
-        <img src="http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png" alt="${data.list[0].weather[0].description}"> 
+        <img src="https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png" alt="${data.list[0].weather[0].description}"> 
         <p>Temperature: ${data.list[0].main.temp} °F</p>
         <p>Wind Speed: ${data.list[0].wind.speed} mph</p>
         <p>Humidity: ${data.list[0].main.humidity} %</p>`;
