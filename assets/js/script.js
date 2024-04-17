@@ -61,24 +61,30 @@ function saveAppendGet(event) {
 
     const cityValue = cityName.value.trim();
 
-    cityBtns.push(cityValue);
-
-    localStorage.setItem('cityBtns', JSON.stringify(cityBtns));
-
-    const button = document.createElement('button');
-
-    button.setAttribute('class', 'btn btn-info mx-4 my-2');
-
-    button.textContent = cityValue;
-
-    button.addEventListener('click', function() {
+    if (!cityBtns.includes(cityValue)) {
         
+        cityBtns.push(cityValue);
+    
+        localStorage.setItem('cityBtns', JSON.stringify(cityBtns));
+    
+        const button = document.createElement('button');
+    
+        button.setAttribute('class', 'btn btn-info mx-4 my-2');
+    
+        button.textContent = cityValue;
+    
+        button.addEventListener('click', function() {
+            
+            getWeather(cityValue);
+        });
+
+        cityBtnsEl.appendChild(button);
+
+    } else {
+
         getWeather(cityValue);
-    });
+    }
 
-    cityBtnsEl.appendChild(button);
-
-    getWeather(cityValue);
 }
 
 // Api fetch function to convert city name to coordinates and aquire weather information at those coordinates
