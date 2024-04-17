@@ -75,10 +75,37 @@ function saveAppendGet(event) {
     
         button.addEventListener('click', function() {
             
-            getWeather(cityValue);
+            const apiUrl = `${apiGeoUrl}q=${cityValue}&limit=1&appid=${key}`
+
+        fetch (apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error ('Network response not functional');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const lat = data[0].lat;
+            const lon =data[0].lon;
+            const apiWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
+
+            fetch (apiWeatherUrl)
+
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response not functional');
+                }
+                return response.json();
+            })
+            .then(data => {
+                showWeather(data);
+            });
+    });
         });
 
         cityBtnsEl.appendChild(button);
+
+        getWeather(cityValue)
 
     } else {
 
