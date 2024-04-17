@@ -13,15 +13,49 @@ const cityBtns = JSON.parse(localStorage.getItem('cityBtns')) || [];
 cityBtns.forEach(function(element) {
     const button = document.createElement('button');
 
-    button.setAttribute('class', 'btn btn-info m-4');
+    button.setAttribute('class', 'btn btn-info mx-4 my-2');
 
     button.textContent = element;
+
+    button.addEventListener('click', function() {
+        
+        const cityValue = element;
+        const apiUrl = `${apiGeoUrl}q=${cityValue}&limit=1&appid=${key}`
+
+        fetch (apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error ('Network response not functional');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const lat = data[0].lat;
+            const lon =data[0].lon;
+            const apiWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
+
+            fetch (apiWeatherUrl)
+
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response not functional');
+                }
+                return response.json();
+            })
+            .then(data => {
+                showWeather(data);
+            });
+    });
+
+    });
+
     cityBtnsEl.appendChild(button);
 });
 
 // Event listener
 searchBtn.addEventListener('click', saveAppendGet);
 
+// function that creates new buttons when a new search term is entered
 function saveAppendGet(event) {
     event.preventDefault();
 
@@ -38,9 +72,8 @@ function saveAppendGet(event) {
     button.textContent = cityValue;
 
     button.addEventListener('click', function() {
-        const searchParam = document.getElementById('cityInput').value;
-
-        getWeather(searchParam);
+        
+        getWeather(cityValue);
     });
 
     cityBtnsEl.appendChild(button);
@@ -48,6 +81,7 @@ function saveAppendGet(event) {
     getWeather(cityValue);
 }
 
+// Api fetch function to convert city name to coordinates and aquire weather information at those coordinates
 function getWeather() {
 
     const cityValue = cityName.value.trim();
@@ -79,6 +113,7 @@ function getWeather() {
     });
 };
 
+// Appends api fetch to the page 
 function showWeather(data) {
     const city = document.getElementById('city-name');
     const currentWeather = document.getElementById('city-info');
@@ -107,5 +142,3 @@ function showWeather(data) {
         <p>Humidity: ${data.list[0].main.humidity} %</p>`;
     }
 };
-
-
