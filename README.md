@@ -48,7 +48,7 @@ See associated licenses
 
 ## Screenshot of application
 
-![5 Day Weather Screenshot](<Screenshot 2024-04-11 222053.png>)
+![5 Day Weather Screenshot](<Application Screenshot.png>)
 
 ## Your Task
 
