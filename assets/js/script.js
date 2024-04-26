@@ -181,9 +181,9 @@ function showWeather(data) {
     for (let i = 0; i < forecastCards.length; i++) {
         forecastCards[i].innerHTML = `
         <h5> ${dayjs().add(1 + i, 'day').format('MM/DD/YYYY')} </h5>
-        <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}.png" alt="${data.list[i].weather[0].description}"> 
-        <p>Temperature: ${data.list[i].main.temp} °F</p>
-        <p>Wind Speed: ${data.list[i].wind.speed} mph</p>
-        <p>Humidity: ${data.list[i].main.humidity} %</p>`;
+        <img src="https://openweathermap.org/img/wn/${data.list[i+1].weather[0].icon}.png" alt="${data.list[i+1].weather[0].description}"> 
+        <p>Temperature: ${data.list[i+1].main.temp} °F</p>
+        <p>Wind Speed: ${data.list[i+1].wind.speed} mph</p>
+        <p>Humidity: ${data.list[i+1].main.humidity} %</p>`;
     }
 };
